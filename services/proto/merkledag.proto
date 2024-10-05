@@ -1,0 +1,25 @@
+syntax = "proto2";
+
+package merkledag.pb;
+
+// Transacción dentro de un bloque de la cadena de bloques
+message Transaction {
+  required string type = 1;
+  required string data = 2;
+  optional string previous_transaction_hash = 3;
+}
+
+// Un nodo MerkleDAG que contiene datos y transacciones
+message PBNode {
+  repeated PBLink Links = 2;  
+  optional bytes Data = 1;     
+  repeated Transaction transactions = 3;  
+  optional string validator = 4; 
+}
+
+// Enlace a otro nodo MerkleDAG
+message PBLink {
+  optional bytes Hash = 1;   
+  optional string Name = 2;  
+  optional uint64 Tsize = 3; 
+}
